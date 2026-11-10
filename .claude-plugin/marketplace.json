@@ -1,0 +1,17 @@
+{
+  "name": "diego-romero",
+  "owner": {
+    "name": "Diego Romero",
+    "url": "https://github.com/Diego-Romero"
+  },
+  "description": "Diego Romero's agent skills, as an installable Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "diego-romero-skills",
+      "source": "./",
+      "description": "Diego Romero's agent skills for real engineering work.",
+      "category": "engineering",
+      "keywords": ["engineering", "skills", "agents"]
+    }
+  ]
+}

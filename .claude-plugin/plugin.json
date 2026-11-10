@@ -1,0 +1,14 @@
+{
+  "name": "diego-romero-skills",
+  "version": "0.1.0",
+  "description": "Diego Romero's agent skills for real engineering work.",
+  "author": {
+    "name": "Diego Romero",
+    "url": "https://github.com/Diego-Romero"
+  },
+  "homepage": "https://github.com/Diego-Romero/skills",
+  "repository": "https://github.com/Diego-Romero/skills",
+  "license": "MIT",
+  "keywords": ["engineering", "skills", "agents"],
+  "skills": []
+}
