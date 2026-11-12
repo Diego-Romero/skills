@@ -1,0 +1,9 @@
+[
+  {
+    "id": "default-timeout",
+    "question": "What is the default timeout for a scheduled observation, in seconds?",
+    "cwd": ".",
+    "answerIn": "code",
+    "required": ["\\b30\\s*seconds?\\b"]
+  }
+]

@@ -1,14 +1,10 @@
 # Skills
 
-My agent skills for real engineering work. One repo, MIT licensed.
-
-They are small, composable and meant to be edited. The set starts with one skill and grows as I find failures worth fixing.
-
-> **Status: work in progress.** No skill has landed yet, so there is nothing to install. The install routes below are the plan, not working commands.
+The agent skills I use every day. This collection is in beta.
 
 ## Install
 
-A plugin updates itself. skills.sh copies editable files into your project, and you update them by hand. Pick one per agent: installing both gives you every skill twice.
+These are the planned beta install commands. Pick one route per agent.
 
 ### Claude Code
 
@@ -17,29 +13,25 @@ claude plugin marketplace add Diego-Romero/skills
 claude plugin install diego-romero-skills@diego-romero
 ```
 
-### Any other agent (editable files, manual updates)
+### Other supported agents
 
 ```bash
 npx skills@latest add Diego-Romero/skills
 ```
 
-## Why these skills exist
+## Skills
 
-Each skill starts from one failure I saw in a real session.
+### `optimize-for-agents`
 
-### #1: The agent reads too much before it starts
+For a walkthrough of how the skill works and why it’s structured this way, see the [Optimize for Agents explainer](https://diego-romero.github.io/skills/) (GitHub Pages launch pending).
 
-An always-loaded `AGENTS.md` that grows by accretion costs tokens on every turn and buries what matters. `context-diet` will restructure instruction files into short pointers, then measure whether the restructure helped or hurt. Results to follow once they are cleared for publishing.
+Optimise your codebase for agents by giving them just enough context to do the job. Most codebases I've seen have oversized `AGENTS.md` files. Agents load guidance they rarely need and still spend time searching for the information that matters. Keeping context lean can make agents faster, cheaper to run, and more likely to produce good results.
 
-## Reference
+The skill helps you identify recurring code patterns, trim `AGENTS.md` into short instructions and pointers, and set up a glossary and architecture decision records (ADRs). Review the proposed changes in a local report, then run before-and-after evals to see whether agents find the right answers and how much effort it takes.
 
-**User-invoked** (you type them)
+### `record-adr`
 
-- `context-diet`: audit an instruction chain, take a baseline, restructure into pointers, re-measure, compare. _Coming soon._
-
-**Model-invoked** (the agent reaches for them)
-
-- None yet.
+Turn an architectural decision you've made into a short record of what you chose, why, and what it means for the codebase.
 
 ## Credits
 

@@ -1,0 +1,32 @@
+{
+  "repository": "Observatory scheduler",
+  "revision": "HEAD",
+  "scope": "Review guidance for scheduled jobs.",
+  "layout": {
+    "rationale": "Keep commands at the root and job-specific rules near the worker.",
+    "current": ["AGENTS.md", "worker/", "└── jobs.js"],
+    "proposed": ["AGENTS.md", "worker/", "├── AGENTS.md", "├── jobs.js", "└── job-pattern.md"]
+  },
+  "tasks": [
+    {
+      "title": "Change the timeout",
+      "cwd": "worker/",
+      "steps": [
+        { "path": "AGENTS.md", "note": "Find the worker's instructions." },
+        { "path": "worker/AGENTS.md", "note": "Follow the job pattern pointer." }
+      ],
+      "pattern": "worker/job-pattern.md"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "worker/job-pattern.md",
+      "title": "Configure a scheduled job",
+      "recommendation": "Keep the timeout next to the job definition.",
+      "examples": [{ "path": "worker/jobs.js", "start": 1, "end": 2 }]
+    }
+  ],
+  "glossary": [{ "term": "Timeout", "definition": "Maximum run time for a job.", "evidence": "worker/jobs.js" }],
+  "decisions": [],
+  "reviewQuestions": ["Is the worker directory the right home for the job guide?"]
+}

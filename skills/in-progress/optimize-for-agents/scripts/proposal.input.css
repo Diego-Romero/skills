@@ -1,0 +1,58 @@
+/*!
+MIT License
+
+Copyright (c) Tailwind Labs, Inc. (Tailwind CSS)
+Copyright (c) 2020 Pouya Saadeghi (daisyUI)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+/* Build with Tailwind CSS and @tailwindcss/cli 4.3.5 and daisyUI 5.7.50.
+   npx @tailwindcss/cli -i proposal.input.css -o proposal.css --minify */
+@import "tailwindcss" source(none);
+@source inline("btn btn-sm btn-primary collapse collapse-arrow collapse-title collapse-content");
+@plugin "daisyui" {
+  themes: light --default;
+  include: button, collapse;
+  logs: false;
+}
+
+@layer base {
+  body { font: 1rem/1.55 system-ui, sans-serif; }
+  main { max-width: 66rem; margin: auto; padding: 2rem 1rem 4rem; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 700; line-height: 1.15; }
+  h2 { font-size: 1.55rem; font-weight: 650; margin-bottom: .6rem; }
+  h3, dt { font-size: 1.06rem; font-weight: 650; }
+  p, figure, dd { margin: .55rem 0; }
+  nav { display: flex; gap: .5rem 1rem; flex-wrap: wrap; padding: 1rem 0; border-bottom: 1px solid #cbd5e1; }
+  nav a { color: #273aa1; text-decoration: underline; }
+  section { margin-top: 2rem; }
+  ol, ul { padding-left: 1.5rem; margin: .75rem 0; }
+  ol { list-style: decimal; }
+  ul { list-style: disc; }
+  code { overflow-wrap: anywhere; }
+  pre { overflow: auto; }
+}
+@layer components {
+  .trees { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: .75rem; margin-top: 1rem; }
+  .panel { min-width: 0; border: 1px solid #cbd5e1; border-radius: .75rem; margin-bottom: .75rem; }
+  .guide { padding: 1rem; }
+  .guide:target { outline: 2px solid #4258cc; outline-offset: 3px; }
+  .snippet { background: #f1f5f9; border-radius: .4rem; padding: .75rem; }
+  .line-number { display: inline-block; width: 4ch; color: #475569; user-select: none; }
+}
