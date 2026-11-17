@@ -1,0 +1,38 @@
+# Task-retro process basis: retro and closure
+
+<!-- Adapted from mattpocock/skills (MIT), revision 5863806dd4e15c63174bee4e7515a4256792ecfa. Local adaptations are identified below. -->
+
+This documents the source and integration behind the authored [task-retro instructions](../SKILL.md). The user is reviewing that skill directly. This reference does not independently authorize improvements, integration or cleanup.
+
+## Matt's current procedure
+
+Reviewed on 17 November 2026 at [revision 5863806dd4e15c63174bee4e7515a4256792ecfa](https://github.com/mattpocock/skills/tree/5863806dd4e15c63174bee4e7515a4256792ecfa), which matched main during this inspection.
+
+- [retro](https://github.com/mattpocock/skills/blob/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/engineering/retro/SKILL.md) loads writing-for-agents, reads the specified session's primary sources (current session by default), identifies environment improvements and presents candidates ordered by severity.
+- Its categories are navigation, automated checks, coding standards, global agent instructions, tool economy, no-op instructions and information access. Preserve their source criteria rather than inventing another general retrospective framework.
+- It checks actual repository check commands/CI before proposing guardrails. Mechanical violations belong in deterministic checks; judgment belongs in review standards. Root agent guidance should chiefly point to the relevant detail.
+- [writing-for-agents](https://github.com/mattpocock/skills/blob/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/productivity/writing-for-agents/SKILL.md) supplies the writing discipline. Its [skill mechanics reference](https://github.com/mattpocock/skills/blob/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/productivity/writing-for-agents/SKILL-MECHANICS.md) applies when actual skill authoring is involved, not as a mandatory additional retrospective stage.
+
+Matt's default output is proposed improvements. The source does not prescribe a runtime usage collector, a task/run measurement report, automatic edits to all suggested files or a merge/cleanup step.
+
+## Our integration
+
+1. **Offer and run scope:** after completed required review, task-driver enters this final skill and offers the optional retrospective before merge, explaining potential future efficiency/reliability benefits and the opportunity to include agreed improvements in the current PR. Honor prior choices, wait for a decision when needed, and do not infer a decline from silence. If declined, skip retrospective analysis and continue verified, authorized closure. An accepted retrospective spans relevant sessions, workers and review tools. A standalone retrospective request already opts in and retains Matt's session default. Keep unrelated activity and unavailable evidence explicit.
+2. **Measured evidence:** use the [ledger contract](../../task-driver/references/ledger.md) and actual outcomes to support observations about time, usage, cost where derivable and rework. Retain baseline/project review identities and ranges. Unknown data stays unknown; session totals and overlapping wall time do not establish per-tool costs or active reasoning time.
+3. **Interpretation:** distinguish measured facts, possible explanations and proposed experiments. One successful run or lower token count does not prove the process improved, and a cheap failed task is not equivalent to a verified success.
+4. **Saved result:** present concise candidates, then retain their evidence and the user's decisions in a run-linked report, using repository conventions. Default to the run artifact bundle rather than maintaining duplicate reports. Measurements have a cutoff; retro precedes closure, so totals may be provisional and omit later work.
+5. **Action boundary:** default to recommendations, matching Matt. Approved improvements follow the normal implementation/check/review path and existing authorization. This is separate from automatically repairing confirmed code-review findings. A report does not itself authorize new global guidance, model settings or unrelated changes.
+6. **Coordination and closure:** task-driver automatically invokes this combined task-retro after review completes; the retrospective itself requires the user's choice. Run accepted analysis and improvements before merge. Use the same task branch/PR for improvements within agreed scope, refresh affected checks/reviews and resume this record without repeating the offer. Broader changes can be deferred. Merge only within applicable authorization and verify the result before safe cleanup. The driver owns recovery/workflow events; runtime sources provide usage. Closure obligations remain when analysis is declined. No separate close-task skill is needed.
+7. **Our documentation process:** replace Matt retro's writing-for-agents call with [optimize-for-agents](../../optimize-for-agents/SKILL.md). Reuse its layout principles, guidance refinement and discovery verification for task-specific recommendations and approved changes. The linked Deepflow `documentation.html` is a generated pilot snapshot of this process, not a portable runtime dependency or proof that its proposed guidance is active. Do not launch the full audit/new-worktree/proposal/evaluation workflow for every retrospective. The original Matt retro body remains unchanged; this adapter explicitly overrides its first step.
+
+## Source retention and packaging
+
+The user now reads/edits the actual skill, with the former questionnaire retained as design history in scratchpad. The bundled [source manifest](mattpocock/source.json) records pinned URLs and both original and packaged hashes. [retro](mattpocock/retro.md), [writing-for-agents](mattpocock/writing-for-agents.md) and the [license](mattpocock/LICENSE) preserve upstream bytes. The [skill-mechanics reference](mattpocock/SKILL-MECHANICS.md) has one relative backlink changed for its renamed reference file; procedural wording is unchanged. Writing-for-agents and skill-mechanics are now retained for provenance only, not loaded as active dependencies. Our sibling optimize-for-agents skill is the active documentation dependency and must be available when porting this definition.
+
+The original snapshot is retained in the session artifact archive under `upstream/mattpocock-5863806dd4e1-retro/`. Reference files use non-SKILL names to avoid accidental command registration during recursive discovery. This authored draft is not yet installed in the project checkouts, shipped in the plugin or exercised against an actual merge/cleanup workflow.
+
+## Closure integration
+
+After the accepted retro and its approved changes, or after the user declines it, verify the agreed endpoint against the current revision: accepted findings, required reviews, CI/checks and any agreed manual evidence. Present the concrete result and open decisions. If merge authorization already covers the action, proceed; otherwise request that final decision with the evidence ready. The retrospective choice is distinct from merge authorization. Do not add a separate permission prompt merely to prepare closure.
+
+Verify the actual merge/integration result before cleanup. Preserve unique files, reports, progress and measured run evidence outside disposable worktrees. Remove only this task's workspace/branch under repository conventions; do not force removal of uncommitted or untracked work. Report the actual outcome and measurement cutoff/coverage, keeping review-ready, merged, deployed, blocked and paused states distinct. The authored procedure remains a draft for the user's review; structural checks do not establish runtime safety or efficiency.

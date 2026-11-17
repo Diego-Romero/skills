@@ -1,0 +1,40 @@
+{
+  "repository": "https://github.com/mattpocock/skills",
+  "revision": "5863806dd4e15c63174bee4e7515a4256792ecfa",
+  "files": [
+    {
+      "path": "retro.md",
+      "upstream_path": "skills/engineering/retro/SKILL.md",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/engineering/retro/SKILL.md",
+      "sha256": "33fbc28568e3146f20fd908b12998bc0ab30aa4f4c87288199a40793efa94696",
+      "upstream_sha256": "33fbc28568e3146f20fd908b12998bc0ab30aa4f4c87288199a40793efa94696",
+      "adaptations": []
+    },
+    {
+      "path": "writing-for-agents.md",
+      "upstream_path": "skills/productivity/writing-for-agents/SKILL.md",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/productivity/writing-for-agents/SKILL.md",
+      "sha256": "551adca942227b44192edba88acd4e8db911f0121ce58ad16944ccf6a896a74a",
+      "upstream_sha256": "551adca942227b44192edba88acd4e8db911f0121ce58ad16944ccf6a896a74a",
+      "adaptations": []
+    },
+    {
+      "path": "SKILL-MECHANICS.md",
+      "upstream_path": "skills/productivity/writing-for-agents/SKILL-MECHANICS.md",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/productivity/writing-for-agents/SKILL-MECHANICS.md",
+      "sha256": "2d1caa036590965f44bd2e448213bde31bee5053766119994c6fe1f4c39847b3",
+      "upstream_sha256": "c768e6307c7c10728c401c213f2c4ba71c542127eeb7ad2956aabd15a0fa0059",
+      "adaptations": [
+        "Relative backlink updated for non-SKILL reference filename; procedural text unchanged."
+      ]
+    },
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/5863806dd4e15c63174bee4e7515a4256792ecfa/LICENSE",
+      "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5",
+      "upstream_sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5",
+      "adaptations": []
+    }
+  ]
+}

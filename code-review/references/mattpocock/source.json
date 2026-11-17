@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/mattpocock/skills",
+  "revision": "5863806dd4e15c63174bee4e7515a4256792ecfa",
+  "files": [
+    {
+      "path": "code-review.md",
+      "upstream_path": "skills/engineering/code-review/SKILL.md",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/engineering/code-review/SKILL.md",
+      "sha256": "9c921a8d88138a41401d8897ca1bb852088ab1b7b605cdd04edc13e3e8aab6dd"
+    },
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/mattpocock/skills/5863806dd4e15c63174bee4e7515a4256792ecfa/LICENSE",
+      "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+<p class="muted">Short instructions, useful patterns, and direct pointers to the right context.</p>
+<nav class="guide-nav" aria-label="Process steps">
+  <a class="btn btn-sm" href="#guide-audit">1 · Audit</a><a class="btn btn-sm" href="#guide-review">2 · Review</a><a class="btn btn-sm" href="#guide-write">3 · Write</a><a class="btn btn-sm" href="#guide-check">4 · Check</a>
+</nav>
+<nav class="guide-topics" aria-label="Documentation contents"><strong>Anatomy</strong><a href="#guide-skill">The skill</a><a href="#guide-instructions">Repo instructions</a><a href="#guide-anatomy">Patterns &amp; variants</a><a href="#guide-glossary">Glossary entries</a><a href="#guide-decisions">Decision records</a><a href="#guide-testing">Testing &amp; CI</a><a href="#guide-maintenance">Guidance checks</a><strong>Process</strong><a href="#guide-audit">Audit</a><a href="#guide-review">Proposal</a><a href="#guide-write">Write</a><a href="#guide-check">Verify</a><a href="#guide-context">Reading plans</a></nav>
+<section class="guide-section" id="guide-skill" tabindex="-1">
+  <span class="badge badge-outline">Skill package</span><h3>Anatomy of the skill</h3>
+  <div class="anatomy-map"><div class="anatomy-base">SKILL.md · purpose + workflow</div><div class="anatomy-branches"><span>References · detailed procedures</span><span>Assets · shared presentation</span></div><div class="anatomy-tests">Scripts · deterministic helpers</div></div>
+  <dl class="anatomy-fields"><div><dt>Instructions</dt><dd>When to use the skill, what to investigate, what to produce, what to verify.</dd></div><div><dt>References</dt><dd>Audit contracts, report input shape, evaluation procedure—read when needed.</dd></div><div><dt>Assets</dt><dd>This shared documentation, reused by the side panel and full-page reader.</dd></div><div><dt>Scripts</dt><dd>Proposal rendering and optional evals. Agents interpret the repository and make recommendations.</dd></div></dl>
+  <div class="mini-route"><span>Audit findings</span><span aria-hidden="true">→</span><span>Editable drafts + proposal</span><span aria-hidden="true">→</span><span>Review + refine</span><span aria-hidden="true">→</span><span>Verification</span></div>
+  <p>The skill package lives here. The resulting instructions, patterns, glossary, and decisions belong in the target repository.</p>
+</section>
+<section class="guide-section" id="guide-instructions" tabindex="-1">
+  <span class="badge badge-outline">Repository output</span><h3>Anatomy of repo instructions</h3>
+  <div class="anatomy-map"><div class="anatomy-base">Root instructions · shared rules + direct pointers</div><div class="anatomy-branches"><span>Area instructions · local rules</span><span>Existing docs · shared references</span></div><div class="anatomy-tests">Patterns · glossary · testing · decisions</div></div>
+  <details class="anatomy-part" open><summary>Root</summary><dl><dt>Scope</dt><dd>Shared across the repository</dd><dt>Contents</dt><dd>Essential guardrails and direct pointers to relevant areas or guides</dd><dt>Evidence</dt><dd>Observed repository conventions and actual instruction loading</dd></dl></details>
+  <details class="anatomy-part"><summary>Scoped instructions</summary><dl><dt>Scope</dt><dd>The code governed by this file</dd><dt>Contents</dt><dd>Local rules and task-to-pattern pointers</dd><dt>Boundary</dt><dd>Detailed examples remain in the guide; commands link to README/scripts</dd></dl></details>
+  <p>A missing scoped file is a finding, not an automatic reason to add one. Whether instructions load depends on the agent and working directory.</p>
+</section>
+<section class="guide-section" id="guide-anatomy" tabindex="-1">
+  <span class="badge badge-outline">Repository output</span><h3>Anatomy of a pattern</h3><p>A coherent building-block family: its common base, meaningful differences, and evidence for using and testing it.</p>
+  <div class="anatomy-map"><div class="anatomy-base">One shared base</div><div class="anatomy-branches"><span>Variant A</span><span>Variant B</span></div><div class="anatomy-tests">Cases mapped to base + variants</div></div>
+  <details class="anatomy-part" open><summary>Base · common to every variant</summary><dl><dt>When</dt><dd>Scope and conditions where the pattern applies</dd><dt>Rule</dt><dd>Shared convention + important guardrails</dd><dt>Example</dt><dd>Small real snippet with source evidence</dd><dt>Status</dt><dd>Preferred, supported, legacy, or uncertain</dd></dl></details>
+  <details class="anatomy-part"><summary>Variants · only what changes</summary><dl><dt>Condition</dt><dd>When to choose this variant</dd><dt>Difference</dt><dd>The change from the base, with its own snippet</dd><dt>Boundary</dt><dd>Separate independent dimensions; avoid every possible combination</dd></dl></details>
+  <details class="anatomy-part"><summary>Testing · evidence and recipe</summary><dl><dt>Cases</dt><dd>Existing assertions mapped to the base and variants</dd><dt>Run</dt><dd>Focused command, working directory, setup, fixtures</dd><dt>Evidence</dt><dd>Inspected versus executed, observed gaps, result source</dd></dl></details>
+  <p>Keep one coherent family together. Link shared setup instead of repeating it in each variant. Split a guide when responsibilities or rules warrant independent reading.</p>
+</section>
+<section class="guide-section" id="guide-glossary" tabindex="-1">
+  <span class="badge badge-outline">Repository output</span><h3>Anatomy of a glossary entry</h3>
+  <dl class="anatomy-fields"><div><dt>Term + meaning</dt><dd>A concise repository-specific definition</dd></div><div><dt>Scope</dt><dd>Where this meaning applies</dd></div><div><dt>Aliases / deviations</dt><dd>Other names for the concept, or different meanings of the same name</dd></div><div><dt>Evidence + status</dt><dd>Code/docs usage; agreed definition or unresolved question</dd></div></dl>
+  <div class="anatomy-example"><span class="badge badge-outline">Illustrative entry</span><strong>Observation</strong><span>One scheduled telescope exposure</span><span>Alias candidate: capture request</span><span>Question: same concept in code and docs?</span></div>
+  <p>Definitions clarify usage. They do not silently authorize renaming code or standardizing legitimate scoped meanings.</p>
+</section>
+<section class="guide-section" id="guide-decisions" tabindex="-1">
+  <span class="badge badge-outline">Repository output</span><h3>Anatomy of a decision record</h3>
+  <div class="mini-route"><span>Context</span><span aria-hidden="true">→</span><span>Choice + reason</span><span aria-hidden="true">→</span><span>Consequences</span></div>
+  <dl class="anatomy-fields"><div><dt>Identity</dt><dd>Title, scope, known status/date, related records</dd></div><div><dt>Context</dt><dd>The problem and constraints behind an already-made choice</dd></div><div><dt>Decision</dt><dd>What was chosen and the recorded rationale</dd></div><div><dt>Consequences</dt><dd>Benefits, costs, and obligations supported by evidence</dd></div><div><dt>Sources</dt><dd>Existing documentation or maintainer confirmation; unknowns remain explicit</dd></div></dl>
+  <p>Reuse existing ADRs. Use <code>record-adr</code> to draft and review a documented decision that lacks a record. Code alone cannot establish why it was chosen.</p>
+</section>
+
+<section class="guide-section" id="guide-testing" tabindex="-1">
+  <span class="badge badge-outline">Shared infrastructure</span><h3>Testing across this repo</h3>
+  <div class="mini-route"><span>Component cases</span><span aria-hidden="true">→</span><span>Shared suite + setup</span><span aria-hidden="true">→</span><span>CI job + trigger</span></div>
+  <!-- REPO_TESTING_OVERVIEW -->
+  <details><summary>What do we investigate?</summary><ul><li>Suites, test levels, framework, fixtures, services, focused commands.</li><li>Workflow triggers, path filters, job dependencies, commands and artifacts.</li><li>Required-check status and observed run results, with evidence or unknown labels.</li></ul></details>
+  <p>Configuration is different from a completed run or a required merge check. Component case details stay with the component; shared setup and CI belong here.</p>
+  <a class="link" href="#testing-ci">Testing &amp; CI material in the proposal ↓</a>
+</section>
+<section class="guide-section" id="guide-maintenance" tabindex="-1">
+  <span class="badge badge-outline">Adoption proposal</span><h3>Keep guidance useful</h3>
+  <div class="health-grid"><div><strong>Growth</strong><span>Agreed budgets per document role</span></div><div><strong>Dead pointers</strong><span>Existing files, anchors and source references</span></div><div><strong>Reachability</strong><span>A route from the relevant instructions or index</span></div><div><strong>Source drift</strong><span>Review guides when owning code or commands change</span></div></div>
+  <!-- GUIDANCE_CHECKS_OVERVIEW -->
+  <details><summary>What should block CI?</summary><ul><li><strong>Deterministic:</strong> missing local targets, invalid anchors, exceeded agreed budgets, removed explicit source references.</li><li><strong>Review signals:</strong> source changes, suspected orphan guides, examples that may have drifted.</li></ul></details>
+  <p>A file is not stale merely because it is old. Check its sources, purpose, and discoverability. Preserve historical ADRs.</p>
+  <div class="mini-route"><span>Inspect existing checks</span><span aria-hidden="true">→</span><span>Agree scope + limits</span><span aria-hidden="true">→</span><span>Implement + test</span><span aria-hidden="true">→</span><span>Wire into CI</span></div>
+  <p>Show existing, proposed, and enabled checks separately. Choose budgets by scope; record exceptions. Proposals do not install checks or alter CI.</p>
+  <a class="link" href="#guidance-checks">Guidance-check proposals ↓</a>
+</section>
+
+<section class="guide-section" id="guide-audit" tabindex="-1">
+  <span class="badge badge-outline">Step 1</span><h3>Start clean, then audit</h3>
+  <div class="mini-route"><span>Latest remote main</span><span aria-hidden="true">→</span><span>Detached worktree</span></div>
+  <p>Save the starting commit. Keep the audit, edits, and checks here; preserve existing checkouts.</p>
+  <h4>Lead agent: establish the overview</h4>
+  <p>Purpose, stack, build/run setup, apps, packages, and their boundaries.</p>
+  <h4>Subagents: investigate in parallel</h4>
+  <ul class="guide-list">
+    <li><strong>Structure:</strong> current tree, instruction files, scopes, pointers, and areas without local guidance.</li>
+    <li><strong>Building blocks:</strong> pages, forms, endpoints, UI/styling, database access—where present. Include their testing approach, setup, focused commands, actual variant cases, and gaps.</li>
+    <li><strong>Shared testing &amp; CI:</strong> suites, shared setup, workflows, triggers, required-check evidence, existing documentation checks.</li>
+    <li><strong>Terminology:</strong> repo-specific meanings, aliases, and conflicting usages.</li>
+    <li><strong>Decisions:</strong> existing ADRs and documented choices that could become drafts.</li>
+  </ul>
+  <details><summary>What counts as a useful pattern?</summary>
+    <p>A shared rule, meaningful observed variants, when each applies, a short real code example, and what breaks if ignored.</p>
+    <p>Endpoint validation, authentication, authorization, and CSRF are separate dimensions. Button styles and interaction states are different dimensions too. Avoid inventing every possible combination.</p>
+    <p>Preferred for new work needs evidence: shared APIs, active usage, tests, explicit guidance, migration or deprecation notes. The newest file alone is insufficient.</p>
+  </details>
+  <p class="guide-tools"><strong>Commands:</strong> <code>git fetch</code>, <code>git worktree add --detach</code>, <code>git status</code>, <code>git rev-parse HEAD</code>. Investigations are agent work, not an inventory script. Without subagents, use the same scopes sequentially.</p>
+  <p class="guide-result">Result → Evidence, uncertainties, and proposals, kept distinct.</p>
+</section>
+<section class="guide-section" id="guide-review" tabindex="-1">
+  <span class="badge badge-outline">Step 2</span><h3>Prepare drafts, then review</h3><div class="mini-route"><span>Draft Markdown in repo</span><span aria-hidden="true">→</span><span>At-a-glance proposal</span><span aria-hidden="true">→</span><span>Edit files + discuss</span></div><p>Full pattern, variant, and testing details live in editable repository files. The proposal links to them and summarizes the base, meaningful variants, and existing test cases.</p><p>Keep active instructions intact until review; use proposed copies for those changes. A saved report is a snapshot: read back file edits and regenerate the summary.</p>
+  <ol class="guide-list"><li><strong>Structure:</strong> one proposed tree with changes marked against the current structure.</li><li><strong>Patterns and tests:</strong> compact base/variant/test summaries and draft links. Full examples, setup and commands are in the files.</li><li><strong>Glossary:</strong> suggested definitions and naming discrepancies.</li><li><strong>Decisions:</strong> existing records and source-backed ADR candidates.</li></ol>
+  <p>One long page, without tabs: headings, file diffs, reusable component cards, and interactive reading plans. Explanations live here in the side panel. Choose what to keep, change, or drop before implementation. Missing instruction files do not automatically need filling.</p>
+  <p class="guide-tools"><strong>Script:</strong> <code>proposal-report.mjs</code> presents the findings in this report. This guide is included in the same HTML. DaisyUI CSS loads from a pinned CDN; <code>--offline</code> embeds the bundled styles instead.</p>
+  <p class="guide-result">Result → Agreed guidance and file layout.</p>
+</section>
+<section class="guide-section" id="guide-write" tabindex="-1">
+  <span class="badge badge-outline">Step 3</span><h3>Refine the agreed guidance</h3>
+  <div class="mini-route"><span>Short instructions</span><span aria-hidden="true">→</span><span>Direct pointer</span><span aria-hidden="true">→</span><span>Relevant guide</span></div>
+  <p>Read back the maintainer’s draft edits. Finalize placement and activate agreed instruction pointers in the original detached worktree. Move before trimming; preserve behavioral guardrails. Keep code behavior unchanged.</p>
+  <p>Group related variants together. Prefer lint, types, or tests for enforceable rules. Reuse existing glossary and decision records.</p>
+  <p class="guide-tools"><strong>Tools:</strong> normal editing tools. The separate <code>record-adr</code> skill can draft and review already-made decisions. Do not invent rationale, dates, or acceptance.</p>
+  <p class="guide-result">Result → Short instructions and evidence-backed guides, including existing testing practices.</p>
+</section>
+<section class="guide-section" id="guide-check" tabindex="-1">
+  <span class="badge badge-outline">Step 4</span><h3>Check discovery</h3>
+  <p>Verify links, anchors, snippets, and actual instruction loading. Now choose real tasks and walk the routes from the root and relevant subdirectories.</p>
+  <p class="guide-tools"><strong>Checks:</strong> use relevant repository checks. There is no bundled link checker. Optional <code>run.mjs</code> compares factual questions with fixed model settings at two recorded revisions; it calls <code>eval-report.mjs</code> to build the results page.</p>
+  <p>Test cards distinguish found/not found/not inspected, and inspected/not executed/executed. Coverage claims need case evidence; a passing suite alone does not establish every variant is covered.</p><p>For evals, agree on questions before editing and validate instruction loading and grading on a small control first. Review paid calls and budget before running.</p>
+  <p class="guide-result">Result → Verified routes and a clear account of what was checked.</p>
+</section>
+<details class="guide-section" id="guide-context" tabindex="-1"><summary>How does the reading plan relate to context?</summary><p>The reading plan is illustrative, not a live trace. Stages show cumulative planned reads; reading test examples is separate from executing tests. Unverified automatic instruction loading stays labelled unknown. Switching components or variants starts a fresh illustration, not a demonstration of forgetting prior context.</p><p>Keep common instructions small and read detailed guides when needed. Once read, a guide may remain in later turns. Context is not automatically removed each turn.</p><p>Smaller instructions alone do not establish lower total context, fewer turns, or better code. Evals measure factual retrieval and effort on the chosen questions.</p></details>
+<details class="guide-section"><summary>What ships inside the skill?</summary><pre>optimize-for-agents/
+├── SKILL.md       Core process
+├── references/    Audit and eval instructions
+├── assets/        Shared process guide
+└── scripts/       Report and eval helpers</pre><p><code>record-adr</code> is a separate skill.</p></details>

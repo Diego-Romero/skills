@@ -19,10 +19,10 @@ while IFS= read -r -d '' skill_md; do
   src="$(dirname "$skill_md")"
   names+=("$(basename "$src")")
   srcs+=("$src")
-done < <(find "$REPO/skills" -name SKILL.md -not -path '*/node_modules/*' -not -path '*/deprecated/*' -print0 2>/dev/null)
+done < <(find "$REPO" -mindepth 2 -maxdepth 2 -name SKILL.md -not -path '*/node_modules/*' -print0)
 
 if [ "${#names[@]}" -eq 0 ]; then
-  echo "no skills found under $REPO/skills, nothing to link"
+  echo "no skills found at $REPO, nothing to link"
   exit 0
 fi
 

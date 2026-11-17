@@ -1,0 +1,696 @@
+{
+  "repository": "Observatory scheduler",
+  "revision": "HEAD",
+  "scope": "Synthetic demonstration of a scheduler guidance proposal. No real repository has been audited or modified.",
+  "layout": {
+    "rationale": "Keep shared instructions at the root and job-specific guidance near the worker.",
+    "current": [
+      "AGENTS.md",
+      "package.json",
+      "worker/",
+      "├── jobs.js",
+      "└── jobs.test.mjs",
+      "web/",
+      "└── button.js",
+      "docs/",
+      "├── jobs.md",
+      "└── scheduling.md"
+    ],
+    "proposed": [
+      "AGENTS.md",
+      "package.json",
+      "worker/",
+      "├── AGENTS.md",
+      "├── job-pattern.md",
+      "├── jobs.js",
+      "└── jobs.test.mjs",
+      "web/",
+      "├── AGENTS.md",
+      "├── button-pattern.md",
+      "└── button.js",
+      "docs/",
+      "├── glossary.md",
+      "└── scheduling.md"
+    ],
+    "reasons": [
+      "Move worker-only rules into scoped guidance with a direct pattern pointer.",
+      "Keep the common job rule and meaningful variants in one guide.",
+      "Reuse the existing design note rather than inventing an accepted ADR."
+    ],
+    "entries": [
+      {
+        "path": "AGENTS.md",
+        "status": "modified",
+        "purpose": "shared guidance",
+        "draftPath": "AGENTS.proposed.md"
+      },
+      {
+        "path": "package.json",
+        "status": "unchanged"
+      },
+      {
+        "path": "worker/AGENTS.md",
+        "status": "added",
+        "purpose": "Links to the job guide",
+        "draftPath": "worker/AGENTS.proposed.md"
+      },
+      {
+        "path": "worker/job-pattern.md",
+        "status": "moved",
+        "from": "docs/jobs.md",
+        "purpose": "rule, variants, testing",
+        "draftPath": "worker/job-pattern.md"
+      },
+      {
+        "path": "worker/jobs.js",
+        "status": "unchanged"
+      },
+      {
+        "path": "worker/jobs.test.mjs",
+        "status": "unchanged"
+      },
+      {
+        "path": "web/AGENTS.md",
+        "status": "added",
+        "purpose": "Links to the button guide",
+        "draftPath": "web/AGENTS.proposed.md"
+      },
+      {
+        "path": "web/button-pattern.md",
+        "status": "added",
+        "purpose": "states and testing gaps",
+        "draftPath": "web/button-pattern.md"
+      },
+      {
+        "path": "web/button.js",
+        "status": "unchanged"
+      },
+      {
+        "path": "docs/glossary.md",
+        "status": "added",
+        "purpose": "domain definitions",
+        "draftPath": "docs/glossary.md"
+      },
+      {
+        "path": "docs/scheduling.md",
+        "status": "unchanged"
+      },
+      {
+        "path": ".github/workflows/checks.yml",
+        "status": "unchanged"
+      },
+      {
+        "path": "docs/testing.md",
+        "status": "modified",
+        "purpose": "shared test and CI setup",
+        "draftPath": "docs/testing.proposed.md"
+      },
+      {
+        "path": "docs/decisions/bounded-retries.md",
+        "status": "added",
+        "draftPath": "docs/decisions/bounded-retries.proposed.md",
+        "purpose": "Decision draft"
+      },
+      {
+        "path": "docs/guidance-checks.md",
+        "status": "added",
+        "draftPath": "docs/guidance-checks.proposed.md",
+        "purpose": "Check proposals"
+      }
+    ],
+    "folders": {
+      "worker": "Background jobs",
+      "web": "Website",
+      "docs": "Documentation",
+      ".github": "GitHub settings",
+      ".github/workflows": "Automated checks"
+    }
+  },
+  "tasks": [
+    {
+      "title": "Change the timeout",
+      "cwd": "worker/",
+      "steps": [
+        {
+          "path": "AGENTS.md",
+          "note": "Find the worker's instructions.",
+          "label": "Read the repository instructions"
+        },
+        {
+          "path": "worker/AGENTS.md",
+          "note": "Follow the job pattern pointer.",
+          "label": "Find the worker guide"
+        }
+      ],
+      "pattern": "worker/job-pattern.md",
+      "scenario": "A scheduled observation is timing out before it finishes.",
+      "outcome": "Find the timeout setting and the existing job convention before editing.",
+      "confirmed": false
+    }
+  ],
+  "patterns": [
+    {
+      "path": "worker/job-pattern.md",
+      "title": "Scheduled job",
+      "recommendation": "Keep the timeout next to the job definition.",
+      "examples": [
+        {
+          "path": "worker/jobs.js",
+          "start": 1,
+          "end": 7
+        }
+      ],
+      "rules": [
+        "Define jobs through the shared factory.",
+        "Keep timeout and retry settings beside the job definition."
+      ],
+      "status": "Preferred for new work",
+      "statusReason": "Shared job factory + design note + retry test cases",
+      "consequence": "Unbounded or hidden retries",
+      "variants": [
+        {
+          "name": "Default retries",
+          "when": "Standard retry policy",
+          "examples": [
+            {
+              "path": "worker/jobs.js",
+              "start": 9,
+              "end": 9
+            }
+          ]
+        },
+        {
+          "name": "Explicit retry limit",
+          "when": "Job-specific retry limit",
+          "examples": [
+            {
+              "path": "worker/jobs.js",
+              "start": 10,
+              "end": 10
+            }
+          ]
+        }
+      ],
+      "testing": {
+        "status": "found",
+        "framework": "node:test · unit",
+        "cwd": ".",
+        "command": "npm run test:worker",
+        "commandEvidence": "package.json:scripts.test:worker → node --test worker/jobs.test.mjs",
+        "setup": [
+          "Node.js",
+          "No external services"
+        ],
+        "fixtures": [
+          "Inline job options"
+        ],
+        "cases": [
+          {
+            "name": "default retries",
+            "variants": [
+              "Default retries"
+            ],
+            "examples": [
+              {
+                "path": "worker/jobs.test.mjs",
+                "start": 5,
+                "end": 7
+              }
+            ]
+          },
+          {
+            "name": "explicit retry limit",
+            "variants": [
+              "Explicit retry limit"
+            ],
+            "examples": [
+              {
+                "path": "worker/jobs.test.mjs",
+                "start": 9,
+                "end": 11
+              }
+            ]
+          }
+        ],
+        "gaps": [
+          "Timeout behavior not covered by these cases"
+        ],
+        "execution": {
+          "status": "not-run"
+        },
+        "sharedGuide": "docs/testing.md"
+      },
+      "draftPath": "worker/job-pattern.md"
+    },
+    {
+      "path": "web/button-pattern.md",
+      "title": "Capture button",
+      "status": "Observed pattern",
+      "rules": [
+        "Native button",
+        "Disabled while loading"
+      ],
+      "examples": [
+        {
+          "path": "web/button.js",
+          "start": 1,
+          "end": 6
+        }
+      ],
+      "variants": [
+        {
+          "name": "Disabled",
+          "when": "Action unavailable",
+          "rules": [
+            "disabled = true"
+          ]
+        },
+        {
+          "name": "Loading",
+          "when": "Capture pending",
+          "rules": [
+            "loading = true",
+            "Pending label + disabled action"
+          ]
+        }
+      ],
+      "testing": {
+        "status": "none-found",
+        "searched": [
+          "web/",
+          "package.json"
+        ],
+        "gaps": [
+          "Disabled state",
+          "Loading label and state"
+        ],
+        "execution": {
+          "status": "not-run"
+        }
+      },
+      "draftPath": "web/button-pattern.md"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Observation",
+      "definition": "One scheduled telescope exposure",
+      "scope": "Scheduler domain",
+      "aliases": [
+        "Capture request"
+      ],
+      "deviation": "Docs: observation ↔ job identifier: capture",
+      "status": "Needs review",
+      "evidence": "docs/scheduling.md:3; worker/jobs.js:9–10"
+    }
+  ],
+  "decisions": [
+    {
+      "title": "Keep retries bounded",
+      "status": "Documented choice · ADR candidate",
+      "choice": "Shared default + per-job retry limits",
+      "rationale": "Prevent indefinite retries",
+      "evidence": "docs/scheduling.md:5–7",
+      "action": "Review ADR draft · decision date unknown",
+      "draftPath": "docs/decisions/bounded-retries.proposed.md"
+    }
+  ],
+  "reviewQuestions": [
+    "Worker guidance placement",
+    "Retry variants and test cases",
+    "Observation ↔ capture terminology",
+    "Retry decision → ADR draft"
+  ],
+  "synthetic": true,
+  "overview": {
+    "purpose": "Telescope capture scheduling · synthetic fixture",
+    "stack": [
+      "Node.js worker",
+      "Browser DOM controls",
+      "node:test"
+    ],
+    "boundaries": [
+      "worker/ · jobs and unit tests",
+      "web/ · capture control",
+      "docs/ · existing guidance"
+    ]
+  },
+  "instructionFiles": [
+    {
+      "path": "AGENTS.md",
+      "scope": "Shared repository guidance",
+      "loading": "Not measured",
+      "issue": "Worker rules at root"
+    },
+    {
+      "path": "worker/",
+      "scope": "Worker jobs",
+      "loading": "No local instruction file",
+      "issue": "Proposed scoped pointer"
+    },
+    {
+      "path": "web/",
+      "scope": "Capture control",
+      "loading": "No local instruction file",
+      "issue": "Proposed scoped pointer"
+    }
+  ],
+  "context": {
+    "scenarios": [
+      {
+        "pattern": "worker/job-pattern.md",
+        "variant": "Default retries",
+        "cwd": "worker/",
+        "files": [
+          {
+            "path": "AGENTS.md",
+            "kind": "instructions",
+            "phase": 0,
+            "loading": "unverified"
+          },
+          {
+            "path": "worker/AGENTS.md",
+            "kind": "instructions",
+            "phase": 0,
+            "loading": "unverified",
+            "proposed": true
+          },
+          {
+            "path": "worker/job-pattern.md",
+            "kind": "guide",
+            "phase": 1,
+            "proposed": true
+          },
+          {
+            "path": "worker/jobs.js",
+            "kind": "source",
+            "phase": 2
+          },
+          {
+            "path": "worker/jobs.test.mjs",
+            "kind": "tests",
+            "phase": 3
+          },
+          {
+            "path": "docs/glossary.md",
+            "kind": "glossary",
+            "phase": 1,
+            "proposed": true
+          },
+          {
+            "path": "docs/scheduling.md",
+            "kind": "decision source",
+            "phase": null
+          },
+          {
+            "path": "web/button-pattern.md",
+            "kind": "unrelated guide",
+            "phase": null,
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "pattern": "worker/job-pattern.md",
+        "variant": "Explicit retry limit",
+        "cwd": "worker/",
+        "files": [
+          {
+            "path": "AGENTS.md",
+            "kind": "instructions",
+            "phase": 0,
+            "loading": "unverified"
+          },
+          {
+            "path": "worker/AGENTS.md",
+            "kind": "instructions",
+            "phase": 0,
+            "loading": "unverified",
+            "proposed": true
+          },
+          {
+            "path": "worker/job-pattern.md",
+            "kind": "guide",
+            "phase": 1,
+            "proposed": true
+          },
+          {
+            "path": "worker/jobs.js",
+            "kind": "source",
+            "phase": 2
+          },
+          {
+            "path": "worker/jobs.test.mjs",
+            "kind": "tests",
+            "phase": 3
+          },
+          {
+            "path": "docs/glossary.md",
+            "kind": "glossary",
+            "phase": 1,
+            "proposed": true
+          },
+          {
+            "path": "docs/scheduling.md",
+            "kind": "decision source",
+            "phase": 1
+          },
+          {
+            "path": "web/button-pattern.md",
+            "kind": "unrelated guide",
+            "phase": null,
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "pattern": "web/button-pattern.md",
+        "variant": "Loading",
+        "cwd": "web/",
+        "files": [
+          {
+            "path": "AGENTS.md",
+            "kind": "instructions",
+            "phase": 0,
+            "loading": "unverified"
+          },
+          {
+            "path": "web/AGENTS.md",
+            "kind": "instructions",
+            "phase": 0,
+            "loading": "unverified",
+            "proposed": true
+          },
+          {
+            "path": "web/button-pattern.md",
+            "kind": "guide",
+            "phase": 1,
+            "proposed": true
+          },
+          {
+            "path": "web/button.js",
+            "kind": "source",
+            "phase": 2
+          },
+          {
+            "path": "docs/glossary.md",
+            "kind": "glossary",
+            "phase": null,
+            "proposed": true
+          },
+          {
+            "path": "docs/scheduling.md",
+            "kind": "decision source",
+            "phase": null
+          },
+          {
+            "path": "worker/job-pattern.md",
+            "kind": "unrelated guide",
+            "phase": null,
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "pattern": "web/button-pattern.md",
+        "variant": "Disabled",
+        "cwd": "web/",
+        "files": [
+          {
+            "path": "AGENTS.md",
+            "kind": "instructions",
+            "phase": 0,
+            "loading": "unverified"
+          },
+          {
+            "path": "web/AGENTS.md",
+            "kind": "instructions",
+            "phase": 0,
+            "loading": "unverified",
+            "proposed": true
+          },
+          {
+            "path": "web/button-pattern.md",
+            "kind": "guide",
+            "phase": 1,
+            "proposed": true
+          },
+          {
+            "path": "web/button.js",
+            "kind": "source",
+            "phase": 2
+          },
+          {
+            "path": "docs/glossary.md",
+            "kind": "glossary",
+            "phase": null,
+            "proposed": true
+          },
+          {
+            "path": "docs/scheduling.md",
+            "kind": "decision source",
+            "phase": null
+          },
+          {
+            "path": "worker/job-pattern.md",
+            "kind": "unrelated guide",
+            "phase": null,
+            "proposed": true
+          }
+        ]
+      }
+    ]
+  },
+  "testingCi": {
+    "status": "Configuration inspected",
+    "sharedSetup": [
+      "Node.js",
+      "Inline job options",
+      "No external services"
+    ],
+    "gaps": [
+      "Browser tests not found",
+      "Required merge checks not inspected",
+      "CI run history not inspected"
+    ],
+    "suites": [
+      {
+        "name": "Worker unit tests",
+        "level": "Unit",
+        "framework": "node:test",
+        "scope": "worker/",
+        "cwd": ".",
+        "command": "npm run test:worker",
+        "setup": [
+          "Inline job options",
+          "No services"
+        ],
+        "ciJob": "Worker checks / test-worker",
+        "evidence": "package.json:scripts.test:worker; docs/testing.md",
+        "components": [
+          "worker/job-pattern.md"
+        ],
+        "examples": [
+          {
+            "path": "docs/testing.md",
+            "start": 1,
+            "end": 6
+          }
+        ]
+      }
+    ],
+    "workflows": [
+      {
+        "name": "Worker checks",
+        "path": ".github/workflows/checks.yml",
+        "status": "Configured · run not observed",
+        "triggers": [
+          "pull_request",
+          "push"
+        ],
+        "required": "Unknown · settings not inspected",
+        "run": "Not inspected",
+        "jobs": [
+          {
+            "name": "test-worker",
+            "needs": [],
+            "commands": [
+              "npm run test:worker"
+            ]
+          }
+        ],
+        "examples": [
+          {
+            "path": ".github/workflows/checks.yml",
+            "start": 1,
+            "end": 11
+          }
+        ]
+      }
+    ],
+    "draftPath": "docs/testing.proposed.md"
+  },
+  "guidanceChecks": [
+    {
+      "title": "Guidance size budgets",
+      "status": "proposed",
+      "signal": "Growth beyond an agreed role-specific budget",
+      "mechanism": "Deterministic line/byte count + scoped budget config",
+      "scope": [
+        "Root instructions",
+        "Scoped instructions",
+        "Detailed guides"
+      ],
+      "policy": "Warn or fail at agreed limits",
+      "limits": "Pending · no universal threshold",
+      "rollout": "Agree budgets → implement checker → wire into CI",
+      "evidence": "Not implemented · not run"
+    },
+    {
+      "title": "Local pointers and anchors",
+      "status": "proposed",
+      "signal": "Missing local file, anchor, or explicit source target",
+      "mechanism": "Resolve references from their containing documents",
+      "scope": [
+        "Guidance files",
+        "Local source references"
+      ],
+      "policy": "Fail deterministic broken targets once enabled",
+      "limits": "Existing exceptions reviewed explicitly",
+      "rollout": "Inspect existing failures → test checker → enable CI",
+      "evidence": "Not implemented · not run"
+    },
+    {
+      "title": "Guide reachability",
+      "status": "proposed",
+      "signal": "Guide without a route from relevant instructions or an index",
+      "mechanism": "Navigation graph with declared entry points",
+      "scope": [
+        "Scoped instructions",
+        "Pattern guides",
+        "Intentional indexes"
+      ],
+      "policy": "Review candidate until graph and exceptions are agreed",
+      "limits": "Auto-loaded instruction scopes and historical records considered",
+      "rollout": "Agree entry points → inspect candidates → choose policy",
+      "evidence": "Not implemented · not run"
+    },
+    {
+      "title": "Source freshness",
+      "status": "proposed",
+      "signal": "Referenced code, commands, or owning areas change",
+      "mechanism": "Changed-source → associated-guide review queue",
+      "scope": [
+        "Pattern snippets",
+        "Testing commands",
+        "Documented source dependencies"
+      ],
+      "policy": "Review source drift; fail removed explicit targets",
+      "limits": "No age-only failure or automatic deletion · preserve ADR history",
+      "rollout": "Track useful source links → flag review candidates",
+      "evidence": "Not implemented · not run"
+    }
+  ],
+  "glossaryDraftPath": "docs/glossary.md",
+  "guidanceDraftPath": "docs/guidance-checks.proposed.md"
+}

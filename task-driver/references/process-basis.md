@@ -1,0 +1,42 @@
+# Task-driver process basis
+
+<!-- Adapted from mattpocock/skills (MIT), revision 5863806dd4e15c63174bee4e7515a4256792ecfa. Local adaptations are identified below. -->
+
+The user selected Matt Pocock's approach as the default, including the full grilling discipline. Task-driver coordinates it directly; we are not creating separate task-plan or execute-task skills, weakening the interview, or requiring a Superpowers implementation plan.
+
+## Source and reuse
+
+Bundled reference files come from [mattpocock/skills revision 5863806dd4e15c63174bee4e7515a4256792ecfa](https://github.com/mattpocock/skills/tree/5863806dd4e15c63174bee4e7515a4256792ecfa), checked on 17 November 2026. Files under `mattpocock/` are unchanged upstream copies, not locally registered skills. [source.json](mattpocock/source.json) records their paths, pinned URLs and SHA-256 hashes; the original [MIT license](mattpocock/LICENSE) is included. Do not silently substitute a newer installed version or edit these snapshots while claiming they are unchanged.
+
+Load the source for the step being performed, not the whole source set:
+
+| Step | Bundled source | Role |
+| --- | --- | --- |
+| Discussion | [grill-with-docs](mattpocock/skills/engineering/grill-with-docs/SKILL.md) | Composes grilling and domain-modeling. |
+| Investigation and questions | [grilling](mattpocock/skills/productivity/grilling/SKILL.md) | Decision tree, question rounds, recommendations, fresh-context factual lookups and confirmed shared understanding. |
+| Shared domain documentation | [domain-modeling](mattpocock/skills/engineering/domain-modeling/SKILL.md) | Challenges terminology and scenarios, checks code, captures glossary entries and significant ADRs. Its document templates are bundled alongside it. |
+| Spec | [to-spec](mattpocock/skills/engineering/to-spec/SKILL.md) | Synthesizes the existing understanding, agrees test seams and writes the spec using the upstream template. |
+| Implementation | [implement](mattpocock/skills/engineering/implement/SKILL.md) | Builds the spec, uses TDD where possible, checks, obtains review and commits. |
+| Behavioral test loop | [tdd](mattpocock/skills/engineering/tdd/SKILL.md) | Uses agreed public seams and one red/green slice at a time. Its test and mocking references are bundled alongside it. |
+| Interface vocabulary, when needed | [codebase-design](mattpocock/skills/engineering/codebase-design/SKILL.md) | Reference vocabulary requested by TDD. Its further references are bundled for link completeness, not mandatory extra sessions. |
+
+Matt's README distinguishes explicit entry commands from reusable model-invoked disciplines. His explicit commands compose reusable disciplines, not other explicit commands. Here an explicitly invoked task-driver reads the bundled procedural bodies as references; the preserved upstream frontmatter does not register commands or override the coordinator's invocation policy. References to a Skill tool resolve to the bundled sources listed above, except code-review, which resolves to our selected separate review skill.
+
+## Our integration adaptations
+
+1. **Coordination:** one driver carries the task from initial request through spec, implementation and the separate review step and a single task-retro combining retro and closure. There is no additional planning or execution wrapper, prescribed worker count or replacement research stage.
+2. **Repository setup:** use the target repository's tracker, label, document and worktree conventions rather than requiring Matt's setup command. Project-relative paths in the source bodies refer to that repository; links to bundled supporting references remain relative to the source file.
+3. **Shared documents:** glossary and ADR changes belong in normal tracked, reviewed task changes. Keep domain vocabulary separate from task requirements and measurement artifacts. Create docs only as the source requires; retain its criteria for offering ADRs.
+4. **One approved spec:** use to-spec's template, including its extensive user stories and testing decisions. Preserve its restriction on specific paths/code in the durable spec and its prototype exception. Do not require a second detailed implementation-plan document. The spec can be a configured tracker issue or a repository document; a local draft is the fallback when neither destination is available or authorized. Record the canonical reference and exact approved content.
+5. **Authorization and automatic transitions:** concrete spec approval immediately starts main-session implementation without another go-ahead, except an explicitly spec-only endpoint. Completed required review immediately enters task-retro, which offers an optional retrospective before merge with its potential benefits. Honor an existing choice; otherwise resolve it before merging. Accepted, in-scope improvements use the same task branch/PR and refresh affected review/checks. A decline skips analysis and continues authorized closure. Our optimize-for-agents process replaces Matt's writing-for-agents step for documentation. A review-only endpoint still returns its report. Honor existing approval for unchanged scope/test seams. Publish and label in the tracker only within the user's authorization; local synthesis remains possible without publishing. Merge requires its own clear go-ahead.
+6. **Review handoff:** implement's existing review call routes once to the [project-aware code-review coordinator](../../code-review/SKILL.md). Matt's Standards/Spec baseline runs first, then the configured project/user process. For the full lifecycle, a reviewable local commit enables the baseline; its accepted repairs precede the task push/draft PR and additional PR-based review. This adapts implement's original post-review commit order. Keep review-branch and review-pr-comments separate in the project stage. The main agent announces and automatically fixes confirmed high/medium findings within approved scope and refreshes affected evidence. Scope/design decisions return to the user. A skipped review is recorded honestly and cannot satisfy mandatory repository checks. The combined task-retro is authored for user review and remains runtime-untested.
+7. **Measurement:** the driver records workflow events and recovery state; a future recorder imports observed runtime usage. Planning and implementation are measurable steps without being separate skills. See [ledger](ledger.md) and [progress](progress.md).
+8. **Execution settings:** use the user's environment, model/provider and reasoning settings. Implementation and repairs stay in the main session; factual lookups and review use their selected procedures. Prefer configured reviewer diversity and disclose actual identities without selecting a fixed model or escalating automatically. Do not cap interview rounds or assume delegation improves cost.
+
+## Scope and readiness
+
+The former task-plan questionnaire was backed up as historical design material; it does not override the selected upstream procedures. The removed task-plan and execute-task placeholders and previous drafts were also backed up outside the repository. The accepted code-review questionnaire is backed up, and its executable instructions are in code-review/SKILL.md. Task-retro/SKILL.md now contains the authored final-step instructions (Matt-based retro plus closure/cleanup) for the user to read; the questionnaire is retained as design history in scratchpad.
+
+Matt's to-tickets is optional decomposition for larger work; implement-spec coordinates a task graph on an integration branch. Neither is a mandatory part of this one-task driver. Superpowers was evaluated as a comparison, not selected as our planning baseline.
+
+The bundled planning/implementation sources can be inspected locally without installing upstream slash commands. The full lifecycle is still a draft: code-review and task-retro are authored but not live-tested. The ledger contract has a local design-run measurement sample, not a completed general runtime recorder. Bundling references or passing a structural validator does not prove workflow quality or efficiency. Project drivers now start implementation automatically after spec approval on normal runs, honoring explicitly limited caller endpoints. OpenAuth has the review coordinator; Ventura still needs that port. Neither project has task-retro installed yet; authoring its canonical definition does not silently install or run it there.
